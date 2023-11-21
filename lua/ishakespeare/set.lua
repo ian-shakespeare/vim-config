@@ -1,3 +1,12 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+vim.opt.guifont = {"CodeNewRoman Nerd Font", ":h16"}
+
+if vim.g.neovide then
+  vim.o.guifont = "CodeNewRoman Nerd Font:h12"
+end
+
 vim.opt.nu = true
 
 vim.opt.tabstop = 4

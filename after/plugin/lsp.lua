@@ -1,4 +1,5 @@
 local lsp_zero = require("lsp-zero")
+local lsp_config = require("lspconfig")
 
 lsp_zero.on_attach(function(client, bufnr)
   lsp_zero.default_keymaps({buffer = bufnr})
@@ -22,7 +23,22 @@ lsp_zero.on_attach(function(client, bufnr)
 
   vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
   vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+  vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
 end)
+
+lsp_config["dartls"].setup({
+  on_attach = on_attach,
+  settings = {
+    dart = {
+      analysisExcludedFolders = {
+        vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
+        vim.fn.expand("$HOME/.pub-cache"),
+        vim.fn.expand("/opt/homebrew/"),
+        vim.fn.expand("$HOME/tools/flutter/"),
+      },
+    }
+  },
+})
 
 require("mason").setup({})
 require("mason-lspconfig").setup({

@@ -1,2 +1,2 @@
-require("ishakespeare.remap")
 require("ishakespeare.set")
+require("ishakespeare.remap")

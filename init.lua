@@ -42,6 +42,17 @@ require("lazy").setup({
   {'hrsh7th/cmp-nvim-lsp'},
   {'hrsh7th/nvim-cmp'},
   {'L3MON4D3/LuaSnip'},
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons"
+    },
+    config = function()
+      require("nvim-tree").setup {}
+    end,
+  },
 })
 
 vim.cmd("colorscheme onedark")
