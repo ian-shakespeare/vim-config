@@ -53,6 +53,7 @@ require("lazy").setup({
       require("nvim-tree").setup {}
     end,
   },
+  {"sbdchd/neoformat"},
 })
 
 vim.cmd("colorscheme onedark")
