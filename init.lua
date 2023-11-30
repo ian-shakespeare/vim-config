@@ -54,6 +54,10 @@ require("lazy").setup({
     end,
   },
   {"sbdchd/neoformat"},
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  }
 })
 
 vim.cmd("colorscheme onedark")
