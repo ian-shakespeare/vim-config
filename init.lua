@@ -57,7 +57,9 @@ require("lazy").setup({
   },
   {"norcalli/nvim-colorizer.lua"},
   {"nvim-lualine/lualine.nvim"},
+  {"lewis6991/gitsigns.nvim"},
 })
 
+require("bufferline").setup()
+
 vim.opt.termguicolors = true
-require("bufferline").setup{}
