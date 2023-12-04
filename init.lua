@@ -49,9 +49,6 @@ require("lazy").setup({
     dependencies = {
       "nvim-tree/nvim-web-devicons"
     },
-    config = function()
-      require("nvim-tree").setup {}
-    end,
   },
   {"sbdchd/neoformat"},
   {
@@ -59,9 +56,8 @@ require("lazy").setup({
     dependencies = { "nvim-tree/nvim-web-devicons" },
   },
   {"norcalli/nvim-colorizer.lua"},
+  {"nvim-lualine/lualine.nvim"},
 })
-
-vim.cmd("colorscheme onedark")
 
 vim.opt.termguicolors = true
 require("bufferline").setup{}
