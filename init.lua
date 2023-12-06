@@ -56,6 +56,7 @@ require("lazy").setup({
     dependencies = {"nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim"},
     build = "cd formatter && npm i && npm run build",
     config = true,
+    lazy = false,
   },
   {
     "folke/trouble.nvim",
