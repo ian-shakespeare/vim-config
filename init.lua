@@ -50,7 +50,7 @@ require("lazy").setup({
       "nvim-tree/nvim-web-devicons"
     },
   },
-  {"sbdchd/neoformat"},
+  {"mhartington/formatter.nvim"},
   {
     "laytan/tailwind-sorter.nvim",
     dependencies = {"nvim-treesitter/nvim-treesitter", "nvim-lua/plenary.nvim"},
