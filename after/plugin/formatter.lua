@@ -17,8 +17,4 @@ require("formatter").setup {
   }
 }
 
-vim.api.nvim_create_augroup("__formatter__", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePost", {
-  group = "__formatter__",
-  command = ":Format"
-})
+vim.keymap.set("n", "<leader>cf", ":Format <cr>")
