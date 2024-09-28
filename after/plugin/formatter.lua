@@ -9,6 +9,7 @@ require("formatter").setup {
     go = require("formatter.filetypes.go").gofmt,
     rust = require("formatter.filetypes.rust").rustfmt,
     svelte = require("formatter.filetypes.svelte").prettier,
+    elixir = require("formatter.filetypes.elixir").mixformat,
   }
 }
 
