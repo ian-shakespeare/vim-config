@@ -51,7 +51,6 @@ require("mason-lspconfig").setup({
     "svelte",
     "marksman",
     "eslint",
-    "omnisharp",
   },
   handlers = {
     lsp_zero.default_setup,
