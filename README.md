@@ -3,9 +3,11 @@
 - `Mason` open mason menu
 
 # Important shortcuts
-- `%` create a file while in explorer
-- `d` create a directory while in explorer
-- `D` delete a file while in explorer
+| Keybind | Description |
+|-|-|
+| `<leader>e` | Explore Files |
+| `<leader>ff` | Find File |
+| `<leader>fw` | Find Word |
 
 # Font
 
