@@ -1,6 +1,3 @@
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 vim.opt.guifont = {"CodeNewRoman Nerd Font", ":h16"}
 
 if vim.g.neovide then
