@@ -1,1 +1,1 @@
-vim.keymap.set("n", "<leader>ce", function() require("trouble").toggle() end)
+vim.keymap.set("n", "<leader>ce", function() require("trouble").toggle("diagnostics") end)
