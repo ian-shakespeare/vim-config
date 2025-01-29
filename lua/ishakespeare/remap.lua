@@ -5,4 +5,4 @@ vim.keymap.set("n", "<tab>", vim.cmd.bnext)
 vim.keymap.set("n", "<S-tab>", vim.cmd.bprev)
 
 -- Go error handling
-vim.keymap.set("n", "@e", "oif err != nil {<Enter><Enter>}<Esc>ki<Tab>", { silent = true })
+vim.keymap.set("n", "@e", "oif err != nil {<Enter><Enter>}<Esc>ka<Tab>", { silent = true })
