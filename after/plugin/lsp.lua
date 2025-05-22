@@ -43,7 +43,7 @@ lsp_config["dartls"].setup({
 require("mason").setup({})
 require("mason-lspconfig").setup({
   ensure_installed={
-    "tsserver",
+    "typescript-language-server",
     "pyright",
     "rust_analyzer",
     "gopls",
