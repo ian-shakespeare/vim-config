@@ -40,10 +40,22 @@ lsp_config["dartls"].setup({
   },
 })
 
+lsp_config.ts_ls.setup{
+  on_attach = on_attach,
+  root_dir = lsp_config.util.root_pattern("package.json"),
+  single_file_support = false,
+}
+
+lsp_config.denols.setup{
+  on_attach = on_attach,
+  root_dir = lsp_config.util.root_pattern("deno.json"),
+}
+
+
 require("mason").setup({})
 require("mason-lspconfig").setup({
   ensure_installed={
-    "typescript-language-server",
+    "ts_ls",
     "pyright",
     "rust_analyzer",
     "gopls",
@@ -51,6 +63,7 @@ require("mason-lspconfig").setup({
     "svelte",
     "marksman",
     "eslint",
+    "denols",
   },
   handlers = {
     lsp_zero.default_setup,
