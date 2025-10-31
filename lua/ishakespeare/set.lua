@@ -23,3 +23,5 @@ vim.opt.termguicolors = true
 vim.opt.clipboard = "unnamedplus"
 
 vim.wo.relativenumber = true
+
+vim.opt.winborder = "rounded"

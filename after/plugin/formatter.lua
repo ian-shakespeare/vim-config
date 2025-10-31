@@ -10,6 +10,7 @@ require("formatter").setup {
     rust = require("formatter.filetypes.rust").rustfmt,
     svelte = require("formatter.filetypes.svelte").prettier,
     elixir = require("formatter.filetypes.elixir").mixformat,
+    c = require("formatter.filetypes.c").clangformat,
   }
 }
 

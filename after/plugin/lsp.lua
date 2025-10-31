@@ -64,6 +64,7 @@ require("mason-lspconfig").setup({
     "marksman",
     "eslint",
     "denols",
+    "clangd",
   },
   handlers = {
     lsp_zero.default_setup,
