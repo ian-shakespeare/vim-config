@@ -26,32 +26,6 @@ lsp_zero.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>ca", function() vim.lsp.buf.code_action() end, opts)
 end)
 
-lsp_config["dartls"].setup({
-  on_attach = on_attach,
-  settings = {
-    dart = {
-      analysisExcludedFolders = {
-        vim.fn.expand("$HOME/AppData/Local/Pub/Cache"),
-        vim.fn.expand("$HOME/.pub-cache"),
-        vim.fn.expand("/opt/homebrew/"),
-        vim.fn.expand("$HOME/tools/flutter/"),
-      },
-    }
-  },
-})
-
-lsp_config.ts_ls.setup{
-  on_attach = on_attach,
-  root_dir = lsp_config.util.root_pattern("package.json"),
-  single_file_support = false,
-}
-
-lsp_config.denols.setup{
-  on_attach = on_attach,
-  root_dir = lsp_config.util.root_pattern("deno.json"),
-}
-
-
 require("mason").setup({})
 require("mason-lspconfig").setup({
   ensure_installed={
@@ -63,7 +37,6 @@ require("mason-lspconfig").setup({
     "svelte",
     "marksman",
     "eslint",
-    "denols",
     "clangd",
   },
   handlers = {
