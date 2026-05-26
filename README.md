@@ -12,3 +12,7 @@
 # Font
 
 I use [CodeNewRoman](https://www.nerdfonts.com/font-downloads) in my terminals
+
+# Dependencies
+
+- [Tree Sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md)
