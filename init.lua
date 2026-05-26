@@ -1,65 +1,88 @@
-require("ishakespeare")
+-- Core settings
+vim.opt.number = true -- show line numbers
+vim.opt.relativenumber = true
+vim.opt.clipboard = "unnamedplus" -- use system clipboard
+vim.opt.winborder = "rounded"
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+vim.opt.wrap = false
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+vim.opt.signcolumn = "yes"
 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
-end
-vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-  {
-    'nvim-telescope/telescope.nvim',
-    tag = '0.1.4',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-  },
-  {
-    "olimorris/onedarkpro.nvim",
-    priority = 1000, -- Ensure it loads first
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-  },
-  {
-    "akinsho/bufferline.nvim",
-    version = "*",
-    dependencies = "nvim-tree/nvim-web-devicons",
-  },
-  {
-    "tpope/vim-fugitive",
-  },
-  {'williamboman/mason.nvim'},
-  {'williamboman/mason-lspconfig.nvim'},
-  {'VonHeikemen/lsp-zero.nvim', branch = 'v3.x'},
-  {'neovim/nvim-lspconfig'},
-  {'hrsh7th/cmp-nvim-lsp'},
-  {'hrsh7th/nvim-cmp'},
-  {'L3MON4D3/LuaSnip'},
-  {
-    "nvim-tree/nvim-tree.lua",
-    version = "*",
-    lazy = false,
-    dependencies = {
-      "nvim-tree/nvim-web-devicons"
-    },
-  },
-  {"mhartington/formatter.nvim"},
-  {
-    "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-  },
-  {"norcalli/nvim-colorizer.lua"},
-  {"nvim-lualine/lualine.nvim"},
-  {"lewis6991/gitsigns.nvim"},
+-- Remaps
+vim.g.mapleader = " "
+vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>x", ":bd <bar> :pbrev <cr>", { silent = true })
+vim.keymap.set("n", "<tab>", vim.cmd.bnext)
+vim.keymap.set("n", "<S-tab>", vim.cmd.bprev)
+vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition)
+vim.keymap.set("n", "K", vim.lsp.buf.hover)
+
+
+-- Install packages
+vim.pack.add({
+	"https://github.com/nvim-lua/plenary.nvim",
+	"https://github.com/nvim-telescope/telescope.nvim",
+	"https://github.com/nvim-treesitter/nvim-treesitter",
+	"https://github.com/rose-pine/neovim",
+	"https://github.com/akinsho/bufferline.nvim",
+	"https://github.com/neovim/nvim-lspconfig", -- LSP client configs
+  "https://github.com/mason-org/mason.nvim", -- LSP install manager
 })
 
-require("bufferline").setup()
 
-vim.opt.termguicolors = true
+-- Packages config
+local telescope = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", telescope.find_files)
+vim.keymap.set("n", "<leader>fw", telescope.live_grep)
+
+local treesitter = require("nvim-treesitter")
+treesitter.setup({
+  ensure_install = {
+    "go",
+    "rust",
+    "javascript",
+    "typescript",
+    "html",
+  },
+  highlight = { enable = true },
+})
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "<filetype>" },
+  callback = vim.treesitter.start,
+})
+
+local rosepine = require("rose-pine")
+rosepine.setup({
+  disable_background = true,
+})
+vim.cmd("colorscheme rose-pine")
+vim.cmd(":hi statusline guibg=NONE")
+
+local bufferline = require("bufferline")
+bufferline.setup()
+
+local mason = require("mason")
+mason.setup()
+
+
+-- LSP
+vim.lsp.enable({
+	"lua_ls",
+	"gopls",
+	"rust_analyzer",
+})
+vim.lsp.config("lua_ls", {
+	settings = {
+		Lua = {
+			workspace = {
+				library = vim.api.nvim_get_runtime_file("", true)
+			}
+		}
+	}
+})

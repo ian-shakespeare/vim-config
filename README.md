@@ -3,10 +3,16 @@
 - `Mason` open mason menu
 
 # Important shortcuts
-- `%` create a file while in explorer
-- `d` create a directory while in explorer
-- `D` delete a file while in explorer
+| Keybind | Description |
+|-|-|
+| `<leader>e` | Explore Files |
+| `<leader>ff` | Find File |
+| `<leader>fw` | Find Word |
 
 # Font
 
 I use [CodeNewRoman](https://www.nerdfonts.com/font-downloads) in my terminals
+
+# Dependencies
+
+- [Tree Sitter CLI](https://github.com/tree-sitter/tree-sitter/blob/master/crates/cli/README.md)
