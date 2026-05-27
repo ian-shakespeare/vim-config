@@ -17,7 +17,7 @@ vim.opt.signcolumn = "yes"
 -- Remaps
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>x", ":bd <bar> :pbrev <cr>", { silent = true })
+vim.keymap.set("n", "<leader>x", ":bd <bar> :bprev <cr>", { silent = true })
 vim.keymap.set("n", "<tab>", vim.cmd.bnext)
 vim.keymap.set("n", "<S-tab>", vim.cmd.bprev)
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition)
