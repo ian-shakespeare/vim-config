@@ -17,7 +17,7 @@ vim.opt.signcolumn = "yes"
 -- Remaps
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>x", "<cmd>bd <bar> <cmd>pbrev <cr>", { silent = true })
+vim.keymap.set("n", "<leader>x", ":bd <bar> :pbrev <cr>", { silent = true })
 vim.keymap.set("n", "<tab>", vim.cmd.bnext)
 vim.keymap.set("n", "<S-tab>", vim.cmd.bprev)
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition)
@@ -100,7 +100,7 @@ formatter.setup({
     c = require("formatter.filetypes.c").clangformat,
   },
 })
-vim.keymap.set("n", "<leader>cf", "<cmd>FormatWrite <cr>")
+vim.keymap.set("n", "<leader>cf", ":FormatWrite <cr>")
 vim.api.nvim_create_augroup("__formatter__", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = "__formatter__",
