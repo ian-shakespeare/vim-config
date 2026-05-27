@@ -17,7 +17,7 @@ vim.opt.signcolumn = "yes"
 -- Remaps
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
-vim.keymap.set("n", "<leader>x", ":bd <bar> :pbrev <cr>", { silent = true })
+vim.keymap.set("n", "<leader>x", "<cmd>bd <bar> <cmd>pbrev <cr>", { silent = true })
 vim.keymap.set("n", "<tab>", vim.cmd.bnext)
 vim.keymap.set("n", "<S-tab>", vim.cmd.bprev)
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition)
@@ -35,6 +35,8 @@ vim.pack.add({
 	"https://github.com/neovim/nvim-lspconfig", -- LSP client configs
   "https://github.com/mason-org/mason.nvim", -- LSP install manager
   "https://github.com/hrsh7th/nvim-cmp", -- better LSP interactions
+  "https://github.com/folke/trouble.nvim", -- pretty error lists
+  "https://github.com/mhartington/formatter.nvim", -- code formatter
 })
 
 
@@ -77,6 +79,32 @@ cmp.mapping.preset.insert({
   ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
   ["<C-y>"] = cmp.mapping.confirm({ select = true }),
   ["<C-Space>"] = cmp.mapping.complete(),
+})
+
+local trouble = require("trouble")
+vim.keymap.set("n", "<leader>ce", function() trouble.toggle("diagnostics") end)
+
+local formatter = require("formatter")
+formatter.setup({
+  filetype = {
+    javascript = require("formatter.filetypes.javascript").prettier,
+    typescript = require("formatter.filetypes.typescript").prettier,
+    javascriptreact = require("formatter.filetypes.javascriptreact").prettier,
+    typescriptreact = require("formatter.filetypes.typescriptreact").prettier,
+    html = require("formatter.filetypes.html").prettier,
+    python = require("formatter.filetypes.python").autopep8,
+    go = require("formatter.filetypes.go").gofmt,
+    rust = require("formatter.filetypes.rust").rustfmt,
+    svelte = require("formatter.filetypes.svelte").prettier,
+    elixir = require("formatter.filetypes.elixir").mixformat,
+    c = require("formatter.filetypes.c").clangformat,
+  },
+})
+vim.keymap.set("n", "<leader>cf", "<cmd>FormatWrite <cr>")
+vim.api.nvim_create_augroup("__formatter__", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+  group = "__formatter__",
+  command = ":FormatWrite",
 })
 
 -- LSP
