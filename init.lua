@@ -35,8 +35,10 @@ vim.pack.add({
 	"https://github.com/neovim/nvim-lspconfig", -- LSP client configs
   "https://github.com/mason-org/mason.nvim", -- LSP install manager
   "https://github.com/hrsh7th/nvim-cmp", -- better LSP interactions
+  "https://github.com/hrsh7th/cmp-nvim-lsp", -- cmp native lsp integration
   "https://github.com/folke/trouble.nvim", -- pretty error lists
   "https://github.com/mhartington/formatter.nvim", -- code formatter
+  "https://github.com/L3MON4D3/LuaSnip", -- snippets for code completion
 })
 
 
@@ -74,11 +76,22 @@ local mason = require("mason")
 mason.setup()
 
 local cmp = require("cmp")
-cmp.mapping.preset.insert({
-  ["<C-p>"] = cmp.mapping.select_prev_item(),
-  ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-  ["<C-y>"] = cmp.mapping.confirm({ select = true }),
-  ["<C-Space>"] = cmp.mapping.complete(),
+local cmptypes = require("cmp.types")
+local cmplsp = require("cmp_nvim_lsp")
+cmp.setup({
+  completion = {
+    autocomplete = { cmptypes.cmp.TriggerEvent.TextChanged },
+  },
+  mapping = cmp.mapping.preset.insert({
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+    ["<C-y>"] = cmp.mapping.confirm({ select = true }),
+    ["<C-Space>"] = cmp.mapping.complete(),
+  }),
+  sources = cmp.config.sources({
+    { name = "nvim_lsp" },
+    { name = "buffer" },
+  }),
 })
 
 local trouble = require("trouble")
@@ -108,6 +121,9 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 })
 
 -- LSP
+vim.lsp.config("*", {
+  capabilities = cmplsp.default_capabilities(),
+})
 vim.lsp.enable({
 	"lua_ls",
 	"gopls",
