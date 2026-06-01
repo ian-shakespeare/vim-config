@@ -128,6 +128,7 @@ vim.lsp.enable({
 	"lua_ls",
 	"gopls",
 	"rust_analyzer",
+  "ts_ls",
 })
 vim.lsp.config("lua_ls", {
 	settings = {
