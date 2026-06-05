@@ -16,6 +16,10 @@
       "rev": "b9d7f853da1197b83b8edb4cc4952f7ad3a42e41",
       "src": "https://github.com/mhartington/formatter.nvim"
     },
+    "gitsigns.nvim": {
+      "rev": "25050e4ed39e628282831d4cbecb1850454ce915",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
     "mason.nvim": {
       "rev": "bb639d4bf385a4d89f478b83af4d770be05ab7eb",
       "src": "https://github.com/mason-org/mason.nvim"

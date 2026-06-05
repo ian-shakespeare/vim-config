@@ -39,6 +39,7 @@ vim.pack.add({
   "https://github.com/folke/trouble.nvim", -- pretty error lists
   "https://github.com/mhartington/formatter.nvim", -- code formatter
   "https://github.com/L3MON4D3/LuaSnip", -- snippets for code completion
+  "https://github.com/lewis6991/gitsigns.nvim", -- git integration
 })
 
 
