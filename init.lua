@@ -25,6 +25,10 @@ vim.keymap.set("n", "K", vim.lsp.buf.hover)
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
 
 
+-- Macros
+vim.keymap.set("n", "@e", "oif err != nil {<Enter><Enter>}<Esc>ki<Tab>", { silent = true })
+
+
 -- Install packages
 vim.pack.add({
 	"https://github.com/nvim-lua/plenary.nvim", -- dependency for telescope
