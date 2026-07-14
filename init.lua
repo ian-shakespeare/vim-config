@@ -59,6 +59,7 @@ treesitter.install({
   "javascript",
   "typescript",
   "html",
+  "svelte",
 })
 vim.api.nvim_create_autocmd("FileType", {
   callback = function()
@@ -134,6 +135,7 @@ vim.lsp.enable({
 	"gopls",
 	"rust_analyzer",
   "ts_ls",
+  "svelte",
 })
 vim.lsp.config("lua_ls", {
 	settings = {
